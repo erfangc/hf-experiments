@@ -1,14 +1,14 @@
 import numpy as np
 from datasets import load_dataset, load_metric
-from transformers import AdamW, AutoTokenizer, AutoModelForSequenceClassification, BertForSequenceClassification
+from transformers import AdamW, AutoTokenizer, AutoModelForSequenceClassification
 from transformers import DataCollatorWithPadding, TrainingArguments, Trainer
 
 checkpoint = "bert-base-uncased"
 print("Starting ...")
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)
-print(f"Loaded tokenizer {checkpoint}")
-model: BertForSequenceClassification = AutoModelForSequenceClassification.from_pretrained(checkpoint, num_labels=2)
-print(f"Loaded model {checkpoint}")
+print(f"Loaded tokenizer {checkpoint} ...")
+model = AutoModelForSequenceClassification.from_pretrained(checkpoint, num_labels=2)
+print(f"Loaded model {checkpoint} ...")
 
 optimizer = AdamW(model.parameters())
 
