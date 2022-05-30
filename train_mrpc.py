@@ -39,4 +39,3 @@ trainer = Trainer(
 )
 
 trainer.train()
-
