@@ -30,7 +30,7 @@ tokenized_datasets = split_datasets.map(
     preprocess_function,
     batched=True,
     remove_columns=split_datasets["train"].column_names,
-)
+)   
 
 model = AutoModelForSeq2SeqLM.from_pretrained(model_checkpoint)
 data_collator = DataCollatorForSeq2Seq(tokenizer, model=model)
