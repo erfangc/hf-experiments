@@ -4,7 +4,7 @@ from pathlib import Path
 import math
 import pandas as pd
 import requests
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 
 GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
 headers = {"Authorization": f"token {GITHUB_TOKEN}"}
@@ -43,3 +43,5 @@ def fetch_issues(
     print(
         f"Downloaded all the issues for {repo}! Dataset stored at {issues_path}/{repo}-issues.jsonl"
     )
+
+fetch_issues()
