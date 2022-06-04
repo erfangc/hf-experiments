@@ -12,9 +12,9 @@ model = AutoModelForSeq2SeqLM.from_pretrained(model_checkpoint)
 tokenizer: T5TokenizerFast = AutoTokenizer.from_pretrained(model_checkpoint)
 
 
-#
+# ----------------------
 # preprocessing function
-#
+# ----------------------
 
 def filter_books(example):
     return (
