@@ -42,18 +42,6 @@ raw_datasets = DatasetDict(
     }
 )
 
-outputs = tokenizer(
-    raw_datasets["train"][:2]["content"],
-    truncation=True,
-    max_length=context_length,
-    return_overflowing_tokens=True,
-    return_length=True,
-)
-
-print(f"Input IDs length: {len(outputs['input_ids'])}")
-print(f"Input chunk lengths: {(outputs['length'])}")
-print(f"Chunk mapping: {outputs['overflow_to_sample_mapping']}")
-
 
 def tokenize(element):
     outputs = tokenizer(
