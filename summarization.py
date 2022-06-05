@@ -4,6 +4,8 @@ from datasets import load_metric
 from nltk.tokenize import sent_tokenize
 from transformers import AutoTokenizer, T5TokenizerFast, AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, \
     DataCollatorForSeq2Seq, Seq2SeqTrainer
+import nltk
+nltk.download('punkt')
 
 rouge_score = load_metric("rouge")
 english_dataset = load_dataset("amazon_reviews_multi", "en")

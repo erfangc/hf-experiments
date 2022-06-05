@@ -26,6 +26,8 @@ Next:
 ```
 git clone https://github.com/erfangc/hf-experiments.git
 git config --global credential.helper store
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
+sudo yum install git-lfs -y
 ```
 
 Next:
