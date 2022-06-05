@@ -8,6 +8,16 @@ Choose:
 * Keypair: any
 * Network settings: default
 
+Next:
+
+```ssh
+ssh -i "master-key-dev.pem" ec2-user@ec2-<public_id>.compute-1.amazonaws.com
+```
+
+Next:
+
+> For latest go to [Start locally | PyTorch](https://pytorch.org/get-started/locally/)
+
 ```
 pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
 ```
