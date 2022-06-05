@@ -21,3 +21,18 @@ Next:
 ```
 pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
 ```
+
+Next:
+```
+git clone https://github.com/erfangc/hf-experiments.git
+```
+
+Next:
+```shell
+cd hf-experiments
+```
+
+Next:
+```shell
+pip install -r requirements.txt
+```
