@@ -25,6 +25,7 @@ pip3 install torch torchvision torchaudio --extra-index-url https://download.pyt
 Next:
 ```
 git clone https://github.com/erfangc/hf-experiments.git
+git config --global credential.helper store
 ```
 
 Next:
@@ -35,4 +36,10 @@ cd hf-experiments
 Next:
 ```shell
 pip install -r requirements.txt
+```
+
+Next, login
+> Find the tokens [here](https://huggingface.co/settings/tokens)
+```shell
+huggingface-cli login
 ```
