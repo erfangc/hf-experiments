@@ -1,5 +1,9 @@
 # hf-experiments
 
+## Setup the GPU instance
+
+> This step should've been performed via launch time `user_data` already
+
 Choose:
 
 * Amazon Linux
@@ -40,7 +44,9 @@ Next:
 pip install -r requirements.txt
 ```
 
-Next, login
+## Before Running Training Scripts
+
+Next, login - just in case the script we are running requires HuggingFace Hub access
 > Find the tokens [here](https://huggingface.co/settings/tokens)
 ```shell
 huggingface-cli login
