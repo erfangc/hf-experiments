@@ -1,9 +1,9 @@
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-checkpoint = "./mt5-small-sandbox1"
+checkpoint = "./sandbox1"
 
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)
-model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
+model = AutoModelForCausalLM.from_pretrained(checkpoint)
 
 batch_encoding = tokenizer("My name is Erfang", return_tensors='pt')
 

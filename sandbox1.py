@@ -3,16 +3,16 @@ import numpy as np
 from datasets import load_dataset
 from datasets import load_metric
 from nltk.tokenize import sent_tokenize
-from transformers import AutoTokenizer, T5TokenizerFast, AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, \
-    DataCollatorForSeq2Seq, Seq2SeqTrainer
+from transformers import AutoTokenizer, T5TokenizerFast, AutoModelForCausalLM, Seq2SeqTrainingArguments, \
+    DataCollatorForLanguageModeling, Seq2SeqTrainer
 
 nltk.download('punkt')
 
 rouge_score = load_metric("rouge")
 my_dataset = load_dataset("csv", data_files={"train": "sandbox_train.tsv", "test": "sandbox_test.tsv"})
 
-model_checkpoint = "google/mt5-small"
-model = AutoModelForSeq2SeqLM.from_pretrained(model_checkpoint)
+model_checkpoint = "facebook/bart-base"
+model = AutoModelForCausalLM.from_pretrained(model_checkpoint)
 tokenizer: T5TokenizerFast = AutoTokenizer.from_pretrained(model_checkpoint)
 
 # ----------------------
@@ -25,12 +25,12 @@ max_target_length = 256
 
 def preprocess_function(examples):
     model_inputs = tokenizer(
-        examples["text"], max_length=max_input_length, truncation=True
+        examples["text"], max_length=max_input_length, padding=True, truncation=True
     )
 
     with tokenizer.as_target_tokenizer():
         labels = tokenizer(
-            examples["extraction"], max_length=max_target_length, truncation=True
+            examples["extraction"], max_length=max_target_length, padding=True, truncation=True
         )
 
     model_inputs["labels"] = labels["input_ids"]
@@ -62,7 +62,7 @@ num_train_epochs = 8
 model_name = model_checkpoint.split("/")[-1]
 
 args = Seq2SeqTrainingArguments(
-    output_dir=f"{model_name}-sandbox1",
+    output_dir=f"sandbox1",
     evaluation_strategy="no",
     learning_rate=5.6e-5,
     per_device_train_batch_size=batch_size,
@@ -71,10 +71,9 @@ args = Seq2SeqTrainingArguments(
     save_total_limit=3,
     num_train_epochs=num_train_epochs,
     predict_with_generate=True,
-    push_to_hub=True,
 )
 
-data_collator = DataCollatorForSeq2Seq(tokenizer, model=model)
+data_collator = DataCollatorForLanguageModeling(tokenizer)
 
 trainer = Seq2SeqTrainer(
     model,
@@ -89,4 +88,5 @@ trainer = Seq2SeqTrainer(
 trainer.train()
 trainer.evaluate()
 
-trainer.push_to_hub(commit_message="Training complete", tags="summarization")
+tokenizer.save_pretrained("./sandbox1")
+model.save_pretrained("./sandbox1")
