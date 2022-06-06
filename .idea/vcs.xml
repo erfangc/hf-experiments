@@ -3,5 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/marian-finetuned-kde4-en-to-fr" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mt5-small-finetuned-amazon-en-es" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mt5-small-sandbox1" vcs="Git" />
   </component>
 </project>
